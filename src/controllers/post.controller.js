@@ -154,3 +154,20 @@ export const GetUserPosts=async(req,res)=>{
         })
     }
 }
+export const GetUsersPosts=async(req,res)=>{
+    try {
+        const findUsersPosts=await Post
+        .find()
+        res.status(202).json({
+            success:true,
+            message:"Users posts retrieved successfully",
+            data:findUsersPosts
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "ERROR",
+            error: error.message
+        })
+    }
+}

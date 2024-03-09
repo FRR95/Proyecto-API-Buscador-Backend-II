@@ -1,6 +1,6 @@
 import {Router} from "express";
 import { auth } from "../middlewares/auth.js";
-import { CreatePost, DeletePost, GetUserPosts, UpdatePost } from "../controllers/post.controller.js";
+import { CreatePost, DeletePost, GetUserPosts, GetUsersPosts, UpdatePost } from "../controllers/post.controller.js";
 
 
 
@@ -10,6 +10,7 @@ router.post('/',auth,CreatePost)
 router.delete('/:id',auth,DeletePost)
 router.put('/:id',auth,UpdatePost)
 router.get('/own',auth,GetUserPosts)
+router.get('/',auth,GetUsersPosts)
 
 
 
