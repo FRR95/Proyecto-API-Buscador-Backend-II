@@ -1,10 +1,12 @@
 import {Router} from "express";
 import { auth } from "../middlewares/auth.js";
+import { CreatePost } from "../controllers/post.controller.js";
+
 
 
 const router=Router();
 
-router.post('/',auth,GetUsers)
+router.post('/',auth,CreatePost)
 
 
 

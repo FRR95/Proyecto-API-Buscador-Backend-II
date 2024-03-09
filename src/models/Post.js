@@ -11,6 +11,11 @@ export const UserSchema = new Schema(
             required: true,
            
         },
+
+        userId: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     },
     {
         timestamps: true,
