@@ -18,17 +18,17 @@ export const CreatePost = async (req, res) => {
             create({
                 title: title,
                 description: description,
-                userId:userId
+                userId: userId
             })
 
-    
 
-    
+
+
 
         res.status(202).json({
-            success:true,
-            message:"Post created successfully",
-            data:postCreated
+            success: true,
+            message: "Post created successfully",
+            data: postCreated
         })
     } catch (error) {
         return res.status(500).json({
@@ -38,4 +38,44 @@ export const CreatePost = async (req, res) => {
         })
     }
 
+}
+
+export const DeletePost = async (req, res) => {
+    try {
+        const postId = req.params.id
+        const userId = req.tokenData.userId
+
+        const findPost = await Post
+            .findOne({
+                
+                    _id: postId,
+                    userId: userId
+                
+            })
+        if (!findPost) {
+            return res.status(404).json({
+                success: false,
+                message: "User or post not found",
+
+            })
+        }
+
+        const postDeleted = await Post
+            .findByIdAndDelete({
+                _id: postId
+            })
+
+        res.status(201).json({
+            success: true,
+            message: "Post deleted succesfully",
+            data: postDeleted
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "ERROR",
+            error: error.message
+        })
+    }
 }
