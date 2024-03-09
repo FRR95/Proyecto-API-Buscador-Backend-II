@@ -51,3 +51,33 @@ export const getUserProfile=async(req,res)=>{
     }
 }
 
+export const UpdateUserProfile = async(req,res)=>{
+    try {
+        const userId=req.tokenData.userId
+        const email=req.body.email
+
+        const userUpdated=await User
+        .findByIdAndUpdate(
+            {
+        _id:userId
+        },
+        {
+         email:email
+        }
+        )
+
+        res.status(202).json({
+            success:true,
+            message:"User profile updated successfully",
+            data:userUpdated
+        })
+    } catch (error) {
+        res.status(500).json(
+            {
+               success: false,
+               message: "ERROR",
+               error: error.message
+            }
+         )
+    }
+}
