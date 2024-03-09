@@ -171,3 +171,30 @@ export const GetUsersPosts=async(req,res)=>{
         })
     }
 }
+export const GetPostById=async(req,res)=>{
+    try {
+        const postId=req.params.id
+        const findPostById=await Post
+        .findById({
+        _id:postId
+        })
+        if(!findPostById){
+            return res.status(404).json({
+                success: false,
+                message: "Post not found",
+              
+            })
+        }
+        res.status(202).json({
+            success:true,
+            message:"Post retrieved successfully",
+            data:findPostById
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "ERROR",
+            error: error.message
+        })
+    }
+}
