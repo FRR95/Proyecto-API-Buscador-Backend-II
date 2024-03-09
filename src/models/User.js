@@ -14,20 +14,24 @@ export const UserSchema = new Schema(
         password: {
             type: String,
             required: true,
-            
+
         },
         role: {
             type: String,
-            enum: ["user","admin","super_admin"],
-            default:"super_admin"
+            enum: ["user", "admin", "super_admin"],
+            default: "super_admin"
         },
+        favouriteBooks: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Post'
+        }]
     },
     {
-        timestamps:true,
-        versionKey:false
-     },
+        timestamps: true,
+        versionKey: false
+    },
 )
 
-const User=model("User",UserSchema)
+const User = model("User", UserSchema)
 
 export default User;
