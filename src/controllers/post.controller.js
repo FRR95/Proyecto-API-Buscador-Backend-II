@@ -133,3 +133,24 @@ export const UpdatePost = async (req, res) => {
     }
 
 }
+
+export const GetUserPosts=async(req,res)=>{
+    try {
+        const userId=req.tokenData.userId
+        const findUserPosts=await Post
+        .find({
+          userId:userId  
+        })
+        res.status(202).json({
+            success:true,
+            message:"User posts retrieved successfully",
+            data:findUserPosts
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "ERROR",
+            error: error.message
+        })
+    }
+}
