@@ -21,7 +21,7 @@ export const UserSchema = new Schema(
             enum: ["user", "admin", "super_admin"],
             default: "super_admin"
         },
-        favouriteBooks: [{
+        userPosts: [{
             type: Schema.Types.ObjectId,
             ref: 'Post'
         }]
