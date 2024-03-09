@@ -47,10 +47,10 @@ export const DeletePost = async (req, res) => {
 
         const findPost = await Post
             .findOne({
-                
-                    _id: postId,
-                    userId: userId
-                
+
+                _id: postId,
+                userId: userId
+
             })
         if (!findPost) {
             return res.status(404).json({
@@ -78,4 +78,58 @@ export const DeletePost = async (req, res) => {
             error: error.message
         })
     }
+}
+
+export const UpdatePost = async (req, res) => {
+    try {
+        const postId = req.params.id
+        const userId = req.tokenData.userId
+        const title = req.body.title
+        const description = req.body.title
+
+        if (!title && !description) {
+            return res.status(400).json({
+                success: false,
+                message: "title or description is needed",
+
+            })
+        }
+
+        const findPost = await Post
+            .findOne({
+
+                _id: postId,
+                userId: userId
+
+            })
+        if (!findPost) {
+            return res.status(404).json({
+                success: false,
+                message: "User or post not found",
+
+            })
+        }
+
+        const postDeleted = await Post
+            .findByIdAndUpdate({
+                _id: postId
+            },
+                {
+                    title: title,
+                    description: description
+                })
+
+        res.status(201).json({
+            success: true,
+            message: "Post updated succesfully",
+            data: postDeleted
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "ERROR",
+            error: error.message
+        })
+    }
+
 }
