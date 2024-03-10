@@ -113,10 +113,7 @@ export const DeleteUser = async (req, res) => {
             })
 
         if (!userDeleted) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found"
-            })
+            throw new Error('User not found')
         }
         res.status(201).json({
             success: false,
@@ -124,13 +121,10 @@ export const DeleteUser = async (req, res) => {
             data: userDeleted
         })
     } catch (error) {
-        res.status(500).json(
-            {
-                success: false,
-                message: "ERROR",
-                error: error.message
-            }
-        )
+        if (error.message === 'User not found') {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
 
 }
@@ -141,12 +135,7 @@ export const UpdateUserRole = async (req, res) => {
         const UserId = req.params.id
 
         if (!userRole) {
-            return res.status(500).json(
-                {
-                    success: false,
-                    message: "User Role is required"
-                }
-            )
+            throw new Error('User Role is required')
         }
         const findUser = await User
             .findById(
@@ -156,12 +145,7 @@ export const UpdateUserRole = async (req, res) => {
             )
 
         if (!findUser) {
-            return res.status(500).json(
-                {
-                    success: false,
-                    message: "User not found"
-                }
-            )
+            throw new Error('User not found')
         }
         const userRoleUpdated = await User
             .findByIdAndUpdate(
@@ -179,12 +163,12 @@ export const UpdateUserRole = async (req, res) => {
         })
 
     } catch (error) {
-        res.status(500).json(
-            {
-                success: false,
-                message: "ERROR",
-                error: error.message
-            }
-        )
+        if (error.message === 'User Role is required') {
+            handleError(res, error.message, 400)
+        }
+        if (error.message === 'User not found') {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
 }
