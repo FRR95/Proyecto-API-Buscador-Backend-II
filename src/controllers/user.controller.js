@@ -122,7 +122,7 @@ export const DeleteUser = async (req, res) => {
         })
     } catch (error) {
         if (error.message === 'User not found') {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -164,10 +164,10 @@ export const UpdateUserRole = async (req, res) => {
 
     } catch (error) {
         if (error.message === 'User Role is required') {
-            handleError(res, error.message, 400)
+          return  handleError(res, error.message, 400)
         }
         if (error.message === 'User not found') {
-            handleError(res, error.message, 400)
+          return  handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }

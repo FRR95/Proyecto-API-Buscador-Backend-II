@@ -30,7 +30,7 @@ export const CreatePost = async (req, res) => {
         })
     } catch (error) {
         if (error.message === 'Title and description required') {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -67,7 +67,7 @@ export const DeletePost = async (req, res) => {
 
     } catch (error) {
         if (error.message === 'User or post not found') {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -111,10 +111,10 @@ export const UpdatePost = async (req, res) => {
         })
     } catch (error) {
         if (error.message === 'title or description is needed') {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         if (error.message === 'User or post not found') {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -175,7 +175,7 @@ export const GetPostById=async(req,res)=>{
         })
     } catch (error) {
         if (error.message === 'Post not found') {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -202,7 +202,7 @@ export const GetPostsByUserId=async(req,res)=>{
         })
     } catch (error) {
         if (error.message === 'User not found') {
-            handleError(res, error.message, 400)
+           return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -248,7 +248,7 @@ export const LikeThePost=async(req,res)=>{
 
  } catch (error) {
     if (error.message === 'Post not found') {
-        handleError(res, error.message, 400)
+       return handleError(res, error.message, 400)
     }
     handleError(res, "ERROR", 500)
  }
