@@ -11,21 +11,13 @@ export const register = async (req, res) => {
 
 
       if (password.length < 8 || password.length > 20) {
-         return res.status(400).json({
-            success: false,
-            message: "Password must contain between 6 and 10 characters"
-         })
+         throw new Error('Password must contain between 6 and 10 characters')
       }
 
 
       const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       if (!validEmail.test(email)) {
-         return res.status(400).json(
-            {
-               success: false,
-               message: "format email invalid"
-            }
-         )
+         throw new Error('format email invalid')
       }
       const passwordEncrypted = bcrypt.hashSync(password, 5)
 
@@ -43,11 +35,13 @@ export const register = async (req, res) => {
 
    } 
    catch (error) {
-      return res.status(500).json({
-         success: false,
-         message: "ERROR",
-         error:error
-      })
+    if (error.message === 'Password must contain between 6 and 10 characters') {
+        handleError(res, error.message, 400)
+    }
+    if (error.message === 'format email invalid') {
+        handleError(res, error.message, 400)
+    }
+    handleError(res, "ERROR", 500)
    }
 }
 
@@ -59,20 +53,12 @@ export const login = async (req, res) => {
    
 
       if (!email || !password) {
-          return res.status(400).json({
-              success: false,
-              message: "email and password are mandatories"
-          })
+          throw new Error('email and password are mandatories')
       }
 
       const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       if (!validEmail.test(email)) {
-          return res.status(400).json(
-              {
-                  success: false,
-                  message: "Email format is not valid"
-              }
-          )
+          throw new Error('Email format is not valid')
       }
              
     const user =await User.findOne({
@@ -81,24 +67,14 @@ export const login = async (req, res) => {
     
     })
 
-
-//JSON
-
-
       if (!user) {
-          res.status(400).json({
-              success: false,
-              message: "Email or password invalid"
-          })
+          throw new Error('Email not found')
       }
      
        const isValidPassword = bcrypt.compareSync(password, user.password)
        
       if (!isValidPassword) {
-          return res.status(400).json({
-              success: false,
-              message: "Email or password invalid"
-          })
+          throw new Error('Password invalid')
       }
 
       const token = jwt.sign(
@@ -125,12 +101,19 @@ email:email,
       })
 
   } catch (error) {
-
-      res.status(500).json({
-          success: false,
-          message: "User cant be logged",
-          error: error.message
-      })
+    if (error.message === 'email and password are mandatories') {
+        handleError(res, error.message, 400)
+    }
+    if (error.message === 'Email format is not valid') {
+        handleError(res, error.message, 400)
+    }
+    if (error.message === 'Email not found') {
+        handleError(res, error.message, 400)
+    }
+    if (error.message === 'Password invalid') {
+        handleError(res, error.message, 400)
+    }
+    handleError(res, "ERROR", 500)
   }
 
 }
