@@ -198,3 +198,35 @@ export const GetPostById=async(req,res)=>{
         })
     }
 }
+export const GetPostsByUserId=async(req,res)=>{
+    try {
+        const userId=req.params.id
+        console.log(userId)
+        const findUser=await User
+        .findById({
+        _id:userId
+        })
+        if(!findUser){
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+              
+            })
+        }
+        const findUserPosts=await Post
+        .find({
+        userId:userId
+        })
+        res.status(202).json({
+            success:true,
+            message:"Post retrieved successfully",
+            data:findUserPosts
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "ERROR",
+            error: error.message
+        })
+    }
+}
