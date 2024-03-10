@@ -1,0 +1,271 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "socialNetworkCollection",
+    "dateExported": "2024-03-10T18:16:31.336Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "b7d55dd2-8498-48e2-96f0-8a836e874f62",
+            "name": "auth",
+            "containerId": "",
+            "created": "2024-03-10T17:18:06.225Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "8658475e-0e84-42cd-af5b-50624fb1ff3f",
+            "name": "users",
+            "containerId": "",
+            "created": "2024-03-10T17:24:14.888Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "posts",
+            "containerId": "",
+            "created": "2024-03-10T17:50:44.848Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "fa90f73a-55cd-4548-8eb8-87ebd327c3f0",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "b7d55dd2-8498-48e2-96f0-8a836e874f62",
+            "name": "Register",
+            "url": "localhost:4000/api/auth/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-10T17:21:01.936Z",
+            "modified": "2024-03-10T17:21:01.936Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"your-name\",\n  \"email\":\"your-email\",\n  \"password\":\"your-password\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a19d9bfd-b4d3-4924-b48e-09de0cfa3cce",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "b7d55dd2-8498-48e2-96f0-8a836e874f62",
+            "name": "Login",
+            "url": "localhost:4000/api/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-10T17:24:01.432Z",
+            "modified": "2024-03-10T17:24:01.432Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"your-email\",\n  \"password\":\"your-password\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f6a2f199-82d4-4343-bfc7-9f56580c3bf5",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "8658475e-0e84-42cd-af5b-50624fb1ff3f",
+            "name": "GetUsers",
+            "url": "localhost:4000/api/users",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-10T17:30:24.867Z",
+            "modified": "2024-03-10T17:30:24.867Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "222f3876-e678-4e7e-a2b8-2023e6a63ff1",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "8658475e-0e84-42cd-af5b-50624fb1ff3f",
+            "name": "GetUserProfile",
+            "url": "localhost:4000/api/users/profile",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-03-10T17:32:37.245Z",
+            "modified": "2024-03-10T17:32:37.245Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7cc1e1dc-6fb6-49fe-a00f-f87541e4d9a3",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "8658475e-0e84-42cd-af5b-50624fb1ff3f",
+            "name": "UpdateUserProfile",
+            "url": "localhost:4000/api/users/profile",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-03-10T17:35:54.952Z",
+            "modified": "2024-03-10T17:35:54.952Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"your-email\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7940cfb0-e464-41df-b99e-6d9866c42be9",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "8658475e-0e84-42cd-af5b-50624fb1ff3f",
+            "name": "DeleteUser",
+            "url": "localhost:4000/api/users/:id",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-03-10T17:39:45.502Z",
+            "modified": "2024-03-10T17:39:45.502Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ecd023f4-ac9e-41e8-a95f-69c84af03e09",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "8658475e-0e84-42cd-af5b-50624fb1ff3f",
+            "name": "UpdateUserRole",
+            "url": "localhost:4000|/api/users/:id/role",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-03-10T17:47:49.747Z",
+            "modified": "2024-03-10T17:47:49.747Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userRole\":\"role-name\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "27d5996e-60f7-4b19-8b13-4deefa78d263",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "CreatePost",
+            "url": "localhost:4000/api/posts",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2024-03-10T17:53:15.208Z",
+            "modified": "2024-03-10T17:53:15.208Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"your-title\",\n  \"description\":\"your-description\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5cb9fb26-c741-449f-9bbe-0d3aad3415a8",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "DeletePost",
+            "url": "localhost:4000/api/posts/:id",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2024-03-10T17:55:31.084Z",
+            "modified": "2024-03-10T17:55:31.084Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "49fa5531-2a98-4618-9539-e596ef4a1700",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "UpdatePostById",
+            "url": "localhost:4000/api/posts/:id",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2024-03-10T17:59:56.217Z",
+            "modified": "2024-03-10T17:59:56.217Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"your-title\",\n  \"description\":\"your-description\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1328468b-6418-4e2a-affa-caa380e9e808",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "GetOwnPosts",
+            "url": "localhost:4000/api/posts/own",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2024-03-10T18:06:54.047Z",
+            "modified": "2024-03-10T18:06:54.047Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d960176e-9288-47a4-afc3-1b133d500141",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "GetPosts",
+            "url": "localhost:4000/api/posts",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-03-10T18:08:50.453Z",
+            "modified": "2024-03-10T18:08:50.453Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "3294ebe7-ab25-46f7-b71a-6f1474e8d7c2",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "GetPostById",
+            "url": "localhost:4000/api/posts/:id",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2024-03-10T18:11:47.143Z",
+            "modified": "2024-03-10T18:11:47.143Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9b1bea15-25dd-4957-9739-81653a88cc1b",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "fd64e886-2ec7-4695-a401-f4d64890b568",
+            "name": "AddAndRemoveLike",
+            "url": "localhost:4000/api/posts/like/:id",
+            "method": "PUT",
+            "sortNum": 140000,
+            "created": "2024-03-10T18:13:49.353Z",
+            "modified": "2024-03-10T18:13:49.353Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d20d5726-adae-465c-8c46-7295417215aa",
+            "colId": "934777f5-87d3-47e1-9efc-dcb1017ef0b8",
+            "containerId": "8658475e-0e84-42cd-af5b-50624fb1ff3f",
+            "name": "GetUserPosts",
+            "url": "localhost:4000/api/users/posts/:id",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2024-03-10T18:16:15.297Z",
+            "modified": "2024-03-10T18:16:15.297Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
