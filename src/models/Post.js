@@ -15,6 +15,11 @@ export const UserSchema = new Schema(
         userId: [{
             type: Schema.Types.ObjectId,
             ref: 'User'
+        }],
+        
+        numberOfLikes: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
         }]
     },
     {
