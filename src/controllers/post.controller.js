@@ -8,10 +8,8 @@ export const CreatePost = async (req, res) => {
         const userId = req.tokenData.userId
 
         if (!title || !description) {
-            return res.status(404).json({
-                sucsess: false,
-                message: "Title and description required"
-            })
+         
+            throw new Error('Title and description required')
         }
 
         const postCreated = await Post.
@@ -31,11 +29,10 @@ export const CreatePost = async (req, res) => {
             data: postCreated
         })
     } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "ERROR",
-            error: error.message
-        })
+        if (error.message === 'Title and description required') {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
 
 }
@@ -53,11 +50,8 @@ export const DeletePost = async (req, res) => {
 
             })
         if (!findPost) {
-            return res.status(404).json({
-                success: false,
-                message: "User or post not found",
-
-            })
+         
+            throw new Error('User or post not found')
         }
 
         const postDeleted = await Post
@@ -72,11 +66,10 @@ export const DeletePost = async (req, res) => {
         })
 
     } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "ERROR",
-            error: error.message
-        })
+        if (error.message === 'User or post not found') {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
 }
 
@@ -88,11 +81,7 @@ export const UpdatePost = async (req, res) => {
         const description = req.body.title
 
         if (!title && !description) {
-            return res.status(400).json({
-                success: false,
-                message: "title or description is needed",
-
-            })
+            throw new Error('title or description is needed')
         }
 
         const findPost = await Post
@@ -103,11 +92,7 @@ export const UpdatePost = async (req, res) => {
 
             })
         if (!findPost) {
-            return res.status(404).json({
-                success: false,
-                message: "User or post not found",
-
-            })
+            throw new Error('User or post not found')
         }
 
         const postDeleted = await Post
@@ -125,11 +110,13 @@ export const UpdatePost = async (req, res) => {
             data: postDeleted
         })
     } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "ERROR",
-            error: error.message
-        })
+        if (error.message === 'title or description is needed') {
+            handleError(res, error.message, 400)
+        }
+        if (error.message === 'User or post not found') {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
 
 }
@@ -179,11 +166,7 @@ export const GetPostById=async(req,res)=>{
         _id:postId
         })
         if(!findPostById){
-            return res.status(404).json({
-                success: false,
-                message: "Post not found",
-              
-            })
+            throw new Error('Post not found')
         }
         res.status(202).json({
             success:true,
@@ -191,11 +174,10 @@ export const GetPostById=async(req,res)=>{
             data:findPostById
         })
     } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "ERROR",
-            error: error.message
-        })
+        if (error.message === 'Post not found') {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
 }
 export const GetPostsByUserId=async(req,res)=>{
@@ -207,11 +189,7 @@ export const GetPostsByUserId=async(req,res)=>{
         _id:userId
         })
         if(!findUser){
-            return res.status(404).json({
-                success: false,
-                message: "User not found",
-              
-            })
+            throw new Error('User not found')
         }
         const findUserPosts=await Post
         .find({
@@ -223,11 +201,10 @@ export const GetPostsByUserId=async(req,res)=>{
             data:findUserPosts
         })
     } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: "ERROR",
-            error: error.message
-        })
+        if (error.message === 'User not found') {
+            handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
 }
 
@@ -242,10 +219,7 @@ export const LikeThePost=async(req,res)=>{
     })
 
    if(!findPost){
-    return res.status(404).json({
-        success: false,
-        message: "Post not found",
-    })
+    throw new Error('Post not found')
    }
     const findUser =await Post
     .findOne({
@@ -273,10 +247,9 @@ export const LikeThePost=async(req,res)=>{
 
 
  } catch (error) {
-    return res.status(500).json({
-        success: false,
-        message: "ERROR",
-        error: error.message
-    })
+    if (error.message === 'Post not found') {
+        handleError(res, error.message, 400)
+    }
+    handleError(res, "ERROR", 500)
  }
 }
