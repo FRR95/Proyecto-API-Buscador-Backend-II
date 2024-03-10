@@ -230,3 +230,53 @@ export const GetPostsByUserId=async(req,res)=>{
         })
     }
 }
+
+export const LikeThePost=async(req,res)=>{
+ try {
+    const postId=req.params.id
+    const userId=req.tokenData.userId
+
+    const findPost =await Post
+    .findById({
+        _id:postId
+    })
+
+   if(!findPost){
+    return res.status(404).json({
+        success: false,
+        message: "Post not found",
+    })
+   }
+    const findUser =await Post
+    .findOne({
+        numberOfLikes:userId
+    })
+
+   if(!findUser){
+    findPost.numberOfLikes.push(userId);
+    await findPost.save();
+
+    return res.status(201).json({
+        success: true,
+        message: "Post liked succesfully",
+    })
+   }
+   if(findUser){
+    findPost.numberOfLikes.pop(userId);
+    await findPost.save();
+
+    return res.status(201).json({
+        success: true,
+        message: "Post remove from like succesfully",
+    })
+   }
+
+
+ } catch (error) {
+    return res.status(500).json({
+        success: false,
+        message: "ERROR",
+        error: error.message
+    })
+ }
+}
