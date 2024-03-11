@@ -26,7 +26,7 @@ const userSeeder = async () => {
 				_id: new mongoose.Types.ObjectId("65eebde6af5c1f55427ff54f"),
 				email: "user@user.com",
 				password: bcrypt.hashSync('12345678', 10),
-				role:"user"
+				role: "user"
 			},
 			{
 				_id: new mongoose.Types.ObjectId("65eebde6af5c2f55427ff54f"),
@@ -35,42 +35,45 @@ const userSeeder = async () => {
 			},
 		]);
 
+		console.log("-------------");
 		console.log("Users created");
+		console.log("-------------");
 	} catch (error) {
 		console.log(error);
-	} 
+	}
 };
 const postSeeder = async () => {
 	try {
-		
-		console.log("Connected to MongoDB");
+
 
 		const post = await Post.create([
 			{
 				title: "title1",
 				description: "description1",
-				userId:new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54e"),
+				userId: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54e"),
 			},
 			{
 				title: "title2",
 				description: "description2",
-				userId:new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54f"),
+				userId: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54f"),
 
 			},
 			{
 				title: "title3",
 				description: "description3",
-				userId:new mongoose.Types.ObjectId("65eebde6af5c1f55427ff54f"),
+				userId: new mongoose.Types.ObjectId("65eebde6af5c1f55427ff54f"),
 
 			},
 			{
 				title: "title4",
 				description: "description4",
-				userId:new mongoose.Types.ObjectId("65eebde6af5c2f55427ff54f"),
+				userId: new mongoose.Types.ObjectId("65eebde6af5c2f55427ff54f"),
 			},
 		]);
-
+		console.log("-------------");
 		console.log("Posts created");
+		console.log("-------------");
+
 	} catch (error) {
 		console.log(error);
 	} finally {
@@ -84,5 +87,3 @@ const executeSeeders = async () => {
 
 }
 executeSeeders()
-//65eebde6af5c0f55427ff54e
-//65eebde6af5c0f55427ff54f
