@@ -224,6 +224,7 @@ export const LikeThePost = async (req, res) => {
         }
         const findUser = await Post
             .findOne({
+                _id: postId,
                 numberOfLikes: userId
             })
 
