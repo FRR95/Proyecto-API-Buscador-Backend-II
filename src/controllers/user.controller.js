@@ -1,4 +1,5 @@
 import User from "../models/User.js"
+import { handleError } from "../utils/handleError.js";
 
 
 export const GetUsers = async (req, res) => {
