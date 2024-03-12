@@ -22,8 +22,20 @@ export const UserSchema = new Schema(
             default: "super_admin"
         },
 
-        
-  
+        following: [
+            {
+              type: Schema.Types.ObjectId,
+              ref: "User",
+              default: [],
+            },
+          ],
+          followers: [
+            {
+              type: Schema.Types.ObjectId,
+              ref: "User",
+              default: [],
+            },
+          ],
     },
     {
         timestamps: true,

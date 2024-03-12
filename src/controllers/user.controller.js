@@ -123,7 +123,7 @@ export const DeleteUser = async (req, res) => {
         })
     } catch (error) {
         if (error.message === 'User not found') {
-           return handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -165,11 +165,45 @@ export const UpdateUserRole = async (req, res) => {
 
     } catch (error) {
         if (error.message === 'User Role is required') {
-          return  handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === 'User not found') {
-          return  handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
+}
+
+export const FollowUnfollowUser = async (req, res) => {
+try {
+    const userId=req.params.id
+    const ownUserId=req.tokenData.userId
+
+    const findUserId=await User
+    .findById(
+        {
+            _id:userId
+        }
+    )
+
+    if(!findUserId){
+        throw new Error('User not found')
+    }
+
+    const findOwnUserId=await User
+    .findOne(
+        {
+            _id:ownUserId,
+            followers:userId
+        }
+    )
+   
+
+  
+} catch (error) {
+    if (error.message === 'User not found') {
+        return handleError(res, error.message, 400)
+    }
+    handleError(res, "ERROR", 500)
+}
 }
