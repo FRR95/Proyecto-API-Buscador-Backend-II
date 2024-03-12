@@ -175,35 +175,73 @@ export const UpdateUserRole = async (req, res) => {
 }
 
 export const FollowUnfollowUser = async (req, res) => {
-try {
-    const userId=req.params.id
-    const ownUserId=req.tokenData.userId
+    try {
+        const userId = req.params.id
+        const ownUserId = req.tokenData.userId
 
-    const findUserId=await User
-    .findById(
-        {
-            _id:userId
+        const findUserId = await User
+            .findById(
+                {
+                    _id: userId
+                }
+            )
+
+        if (!findUserId) {
+            throw new Error('User not found')
         }
-    )
 
-    if(!findUserId){
-        throw new Error('User not found')
-    }
+        const findUserIdToFollow = await User
+            .findOne(
+                {
+                    _id: userId,
+                    followers: ownUserId
+                }
+            )
+        const findMyUserIdToFollowing = await User
+            .findOne(
+                {
+                    _id: ownUserId,
+                 
 
-    const findOwnUserId=await User
-    .findOne(
-        {
-            _id:ownUserId,
-            followers:userId
+                }
+            )
+
+        if (!findUserIdToFollow) {
+            findUserId.followers.push(ownUserId)
+            findMyUserIdToFollowing.following.push(userId)
+            await findUserId.save()
+            await findMyUserIdToFollowing.save()
+
+            return res.status(201).json({
+                success: true,
+                message: "User Followed Successfully",
+            })
         }
-    )
-   
+        if (findUserIdToFollow) {
+            for (let i = 0; i < findUserId.followers.length; i++) {
+                if (findUserId.followers[i].toString() === `${ownUserId}`) {
+                    findUserId.followers.splice(i, 1)
+                    await findUserId.save();
 
-  
-} catch (error) {
-    if (error.message === 'User not found') {
-        return handleError(res, error.message, 400)
+                }
+            }
+            for (let i = 0; i < findMyUserIdToFollowing.following.length; i++) {
+                if (findMyUserIdToFollowing.following[i].toString() === `${userId}`) {
+                    findMyUserIdToFollowing.following.splice(i, 1)
+                    await findMyUserIdToFollowing.save();
+                }
+            }
+
+            return res.status(201).json({
+                success: true,
+                message: "User UnFollowed Successfully",
+            })
+        }
+
+    } catch (error) {
+        if (error.message === 'User not found') {
+            return handleError(res, error.message, 400)
+        }
+        handleError(res, "ERROR", 500)
     }
-    handleError(res, "ERROR", 500)
-}
 }

@@ -209,7 +209,7 @@ export const GetPostsByUserId = async (req, res) => {
     }
 }
 
-export const LikeThePost = async (req, res) => {
+export const LikeUnlikeThePost = async (req, res) => {
     try {
         const postId = req.params.id
         const userId = req.tokenData.userId
