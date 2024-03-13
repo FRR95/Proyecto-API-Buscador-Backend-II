@@ -184,7 +184,6 @@ export const GetPostById = async (req, res) => {
 export const GetPostsByUserId = async (req, res) => {
     try {
         const userId = req.params.id
-        console.log(userId)
         const findUser = await User
             .findById({
                 _id: userId
@@ -256,6 +255,31 @@ export const LikeUnlikeThePost = async (req, res) => {
 
     } catch (error) {
         if (error.message === 'Post not found') {
+            return handleError(res, error.message, 400)
+        }
+        handleError(res, error.message, 500)
+    }
+}
+
+export const GetFollowingUsersPosts = async (req, res) => {
+    try {
+        const userId = req.tokenData.userId
+
+        const findUser = await User
+            .findById({
+                _id: userId
+            })
+
+        const getPosts = await Post.find({ userId: {$in:(findUser.following)}})
+     
+        return res.status(201).json({
+            success: true,
+            message: "Following users posts retrieved successfully",
+            data: getPosts
+        })
+
+    } catch (error) {
+        if (error.message === 'User not found') {
             return handleError(res, error.message, 400)
         }
         handleError(res, error.message, 500)
