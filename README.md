@@ -1,7 +1,7 @@
 
-# Tattoo and piercing shop 
+# Social Network 🌐
 
-Hi Geeks! I have made a backend application based on a Tatto and piercing shop where you can register and login and more things explained below!
+Hi Geeks! I have made a backend application based on a Social Network shop where you can register,login,create posts,follow other users and more things explained below!
 
 ## Index 🧾
 <details>
@@ -11,9 +11,8 @@ Hi Geeks! I have made a backend application based on a Tatto and piercing shop w
 
 - [Technologies ⚙](#technologies-)
 - [Installation ⬇](#installation-)
-- [Diagram](#diagram)
+- [Deployment 🚀](#deployment-)
 - [Endpoints](#endpoints)
-- [Bugs 🐛](#bugs-)
 - [Author 🙍‍♂️](#author-)
 - [Time of development ⌛](#time-of-development-)
 
@@ -21,8 +20,8 @@ Hi Geeks! I have made a backend application based on a Tatto and piercing shop w
 
 ## Technologies ⚙
 
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" 
-alt="TypeScript" />
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" 
+alt="JavaScript" />
 
 <img src="https://img.shields.io/badge/NodeJs-339933?style=for-the-badge&logo=Node.js&logoColor=white" 
 alt="Nodejs" />
@@ -30,8 +29,8 @@ alt="Nodejs" />
 <img src="https://img.shields.io/badge/Express.js-335933?style=for-the-badge&logo=express&logoColor=white" 
 alt="Express" />
 
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=MySQL&logoColor=white" 
-alt="MySqls"/>
+<img src="https://img.shields.io/badge/Mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white" 
+alt="Mongodb"/>
 
 <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" 
 alt="Docker"/>
@@ -50,7 +49,7 @@ alt="Docker"/>
 
 ***Clone the repository***
 ```sh
-git clone https://github.com/FRR95/Proyecto-API-Buscador-Backend-I.git
+git clone https://github.com/FRR95/Proyecto-API-Buscador-Backend-II.git
 ```
 **2**
 
@@ -71,78 +70,48 @@ npm install
 npm run dev
 ```
 
-
 **5**
 
-***Craete all the tables on your database***
-
-```sh
-npm run run-migrations
-```
-
-
-**6**
-
-***Create data for the tables***
+***Create data for the collections***
 
 ```sh
 npm run run-seeders
 ```
 
-***You can rather execute the sql code in the sql directory in the proper order (Services.sql>Roles.sql>Users.sql>Appointments.sql) from strongest to weakest table***
-
-
-**7**
-
-***Revert the tables***
-
-```sh
-npm run revert-migrations
-```
-
-**8**
-
-***Deploy and run the server***
-
-```sh
-npm run build
-npm start
-```
-
 
 </details>
 
-## Diagram
+## Deployment 🚀
 
-<img src="./imgs/Captura.PNG">
+(https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io)
 
 ## Endpoints
 <details>
 <summary>Endpoints</summary>
 
 ***Add in your client the following endpoints***
+***You can replace the url deployment below with your localhost url***
 
 ***AUTH***
 
 - REGISTER A USER
 
  ```sh
-POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/auth/register
+POST https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/auth/register
  ```
 ***body***
 
  ```sh
 {
-   "first_name":"the-firt-name",
-   "last_name":"the-last-name",
+   "name":"the-last-name",
    "email":"your-email",
-   "password_hash":"your-password"
+   "password":"your-password"
 }
  ```
 - LOGIN A USER
 
  ```sh
-POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/auth/login
+POST https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/auth/login
  ```
 ***body***
 
@@ -158,131 +127,121 @@ POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/auth/log
 - GET A USER
 
  ```sh
-GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/users
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/users
  ```
-***You can filter the searching by their email or first name ***
+***You can filter the searching by their email or first name***
  - GET YOUR USER PROFILE
 
  ```sh
-GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/user/profile
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/user/profile
  ```
 
   - UPDATE YOUR USER PROFILE
 
  ```sh
-PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/user/profile
+PUT https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/user/profile
  ```
 
  ***body***
 
  ```sh
 {
-   "first_name":"your-first-name"
+   "email":"your-email"
 }
  ```
 
    - DELETE A USER
 
  ```sh
-DELETE https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/users/:id
+DELETE https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/users/:id
  ```
 
  - UPDATE A USER ROLE
 
  ```sh
-PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/users/:id/role
+PUT https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/users/:id/role
  ```
 
   ***body***
 
  ```sh
 {
-   "role_id":id-number
+   "userRole":"role-name"
 }
  ```
-***APPOINTMENTS***  
-
- - POST AN APPOINTMENT
+ - GET POSTS BY USER ID
 
  ```sh
-POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/users/posts/:id
+ ```
+ - FOLLOW AND UNFOLLOW USER
+
+ ```sh
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/users/follow/:id
  ```
 
- ***body***
+***POSTS***
+
+- CREATE A POST
+
+ ```sh
+POST https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts
+ ```
+
+  ***body***
 
  ```sh
 {
-   "appointment_date":"your-appointment-date",
-   "service_id":"service-id"
+   "title":"your-title"
+   "description":"your-description"
 }
  ```
- - UPDATE AN APPOINTMENT
+
+ - DELETE A POST
 
  ```sh
-PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments
+DELETE https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts/:id
+ ```
+ - UPDATE A POST
+
+ ```sh
+PUT https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts/:id
  ```
 
- ***body***
+   ***body***
 
  ```sh
 {
-   "id":"appointment-id",
-   "appointment_date":"your-appointment-date",
-   "service_id":"service-id"
-}
- ```
- - RECOVER AN APPOINTMENT
-
- ```sh
-GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments/:id
- ```
-
- - GET PROFILE APPOINTMENTS
-
- ```sh
-GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments
- ```
-
-***SERVICES***  
-
- - GET SERVICES
-
- ```sh
-GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services
- ```
-
-  - POST A SERVICE
-
- ```sh
-POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services
- ```
-
- ***body***
-
- ```sh
-{
-   "service_name":"service-name",
-   "description":"service-description"
-}
- ```
-  - UPDATE A SERVICE
-
- ```sh
-PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services/:id
- ```
-
- ***body***
-
- ```sh
-{
-   "service_name":"service-name"
+   "title":"your-title"
+   "description":"your-description"
 }
  ```
 
-   - DELETE A SERVICE
+  - GET YOUR OWN POSTS
 
  ```sh
-DELETE https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services/:id
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts/own
+ ```
+  - GET USERS POSTS
+
+ ```sh
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts
+ ```
+  - LIKE AND UNLIKE THE POST
+
+ ```sh
+PUT https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts/like/:id
+ ```
+
+  - GET THE POSTS OF THE USERS YOU ARE FOLLOWING
+
+ ```sh
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts/timeline
+ ```
+  - GET THE POST BY ID
+
+ ```sh
+GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/posts/:id
  ```
 
 ***🚩CAUTION:In some endpoints you need to be register and or with super_admin privileges showed as auth and isSuperAdmin middleware on the end points***
@@ -293,16 +252,7 @@ your-token-here
 ```
 </details>
 
-## Bugs 🐛
 
-**When i run the seeders an error appears and says:**
-```sh
-throw new CannotExecuteNotConnectedError(this.name)
-                  ^
-CannotExecuteNotConnectedError: Cannot execute operation on "default" connection because connection is not yet established.
-```
-
-**The connection is stablished and the seeder is succesfully executed anyway despite the error**
 
 ## Author 🙍‍♂️
 
