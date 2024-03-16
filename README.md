@@ -85,13 +85,14 @@ npm run run-seeders
 
 ## Deployment 🚀
 
-(https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io)
+https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io
 
 ## Endpoints
 <details>
 <summary>Endpoints</summary>
 
 ***Add in your client the following endpoints***
+
 ***You can replace the url deployment below with your localhost url***
 
 ***AUTH***
