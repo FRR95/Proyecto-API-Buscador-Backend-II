@@ -1,5 +1,7 @@
 
 # Social Network 🌐
+<img src ="src\imgs\socialnetworkimg.png">
+
 
 Hi Geeks! I have made a backend application based on a Social Network shop where you can register,login,create posts,follow other users and more things explained below!
 
