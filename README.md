@@ -132,7 +132,7 @@ POST https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/auth/lo
  ```sh
 GET https://proyecto-api-buscador-backend-ii-dev-nqhh.1.ie-1.fl0.io/api/users
  ```
-***You can filter the searching by their email or first name***
+***You can filter the searching by their email with ?email='the user email' after the GET url endpoint***
  - GET YOUR USER PROFILE
 
  ```sh
