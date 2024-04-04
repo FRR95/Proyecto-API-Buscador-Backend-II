@@ -21,6 +21,7 @@ const userSeeder = async () => {
 				_id: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54f"),
 				email: "superadmin@superadmin.com",
 				password: bcrypt.hashSync('12345678', 10),
+				role: "super_admin",
 			},
 			{
 				_id: new mongoose.Types.ObjectId("65eebde6af5c1f55427ff54f"),
@@ -32,6 +33,7 @@ const userSeeder = async () => {
 				_id: new mongoose.Types.ObjectId("65eebde6af5c2f55427ff54f"),
 				email: "superadmin2@superadmin2.com",
 				password: bcrypt.hashSync('12345678', 10),
+				role: "super_admin",
 			},
 		]);
 
