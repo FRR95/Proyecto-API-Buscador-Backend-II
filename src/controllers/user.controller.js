@@ -77,6 +77,7 @@ export const UpdateUserProfile = async (req, res) => {
     try {
         const userId = req.tokenData.userId
         const email = req.body.email
+        const name = req.body.name
 
         const userUpdated = await User
             .findByIdAndUpdate(
@@ -84,7 +85,8 @@ export const UpdateUserProfile = async (req, res) => {
                     _id: userId
                 },
                 {
-                    email: email
+                    email: email,
+                    name:name
                 }
             )
 
