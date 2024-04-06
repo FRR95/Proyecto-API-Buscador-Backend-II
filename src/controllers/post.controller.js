@@ -271,7 +271,7 @@ export const GetFollowingUsersPosts = async (req, res) => {
             })
 
         const getPosts = await Post.find({ userId: {$in:(findUser.following)}})
-        .populate('userId', 'name')
+        .populate('userId', 'email')
         .exec();
 
        
