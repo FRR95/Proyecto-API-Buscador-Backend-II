@@ -79,7 +79,7 @@ export const UpdatePost = async (req, res) => {
         const postId = req.params.id
         const userId = req.tokenData.userId
         const title = req.body.title
-        const description = req.body.title
+        const description = req.body.description
 
         if (!title && !description) {
             throw new Error('title or description is needed')
