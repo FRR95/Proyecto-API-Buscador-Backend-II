@@ -271,11 +271,17 @@ export const GetFollowingUsersPosts = async (req, res) => {
             })
 
         const getPosts = await Post.find({ userId: {$in:(findUser.following)}})
+        .populate('userId', 'name')
+        .exec();
+
+       
+      
      
         return res.status(201).json({
             success: true,
             message: "Following users posts retrieved successfully",
             data: getPosts
+           
         })
 
     } catch (error) {
