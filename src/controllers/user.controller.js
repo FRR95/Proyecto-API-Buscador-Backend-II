@@ -131,6 +131,36 @@ export const DeleteUser = async (req, res) => {
     }
 
 }
+export const UpdateUserProfileInfo = async (req, res) => {
+    try {
+        const userId = req.params.id
+        const name = req.body.name
+
+        const userUpdated = await User
+            .findByIdAndUpdate(
+                {
+                    _id: userId
+                },
+                {
+                    name:name
+                }
+            )
+
+        res.status(202).json({
+            success: true,
+            message: "User profile updated successfully",
+            data: userUpdated
+        })
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: "ERROR",
+                error: error.message
+            }
+        )
+    }
+}
 
 export const UpdateUserRole = async (req, res) => {
     try {
