@@ -9,14 +9,14 @@ export const PostSchema = new Schema(
         description: {
             type: String,
             required: true,
-           
+
         },
 
-        userId: [{
+        userId: {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }],
-        
+        },
+
         numberOfLikes: [{
             type: Schema.Types.ObjectId,
             ref: 'User'
