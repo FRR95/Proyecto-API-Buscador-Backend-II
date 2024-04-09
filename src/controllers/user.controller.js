@@ -119,7 +119,7 @@ export const DeleteUser = async (req, res) => {
             throw new Error('User not found')
         }
         res.status(201).json({
-            success: false,
+            success: true ,
             message: "User deleted succesfully",
             data: userDeleted
         })
