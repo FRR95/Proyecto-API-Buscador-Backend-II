@@ -146,6 +146,11 @@ export const GetUsersPosts = async (req, res) => {
     try {
         const findUsersPosts = await Post
             .find()
+            .populate({
+                path:"userId",
+                select:"name"})
+
+                
         res.status(202).json({
             success: true,
             message: "Users posts retrieved successfully",
@@ -273,7 +278,7 @@ export const GetFollowingUsersPosts = async (req, res) => {
         const getPosts = await Post.find({ userId: { $in: (findUser.following) } })
             .populate({
                 path:"userId",
-                select:"email"})
+                select:"name"})
 
 
 
