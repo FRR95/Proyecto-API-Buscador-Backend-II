@@ -13,24 +13,28 @@ const userSeeder = async () => {
 		const user = await User.create([
 			{
 				_id: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54e"),
+				name:"admin",
 				email: "admin@admin.com",
 				password: bcrypt.hashSync('12345678', 10),
 				role: "admin",
 			},
 			{
 				_id: new mongoose.Types.ObjectId("65eebde6af5c0f55427ff54f"),
+				name:"super_admin",
 				email: "superadmin@superadmin.com",
 				password: bcrypt.hashSync('12345678', 10),
 				role: "super_admin",
 			},
 			{
 				_id: new mongoose.Types.ObjectId("65eebde6af5c1f55427ff54f"),
+				name:"user",
 				email: "user@user.com",
 				password: bcrypt.hashSync('12345678', 10),
 				role: "user"
 			},
 			{
 				_id: new mongoose.Types.ObjectId("65eebde6af5c2f55427ff54f"),
+				name:"super_admin2",
 				email: "superadmin2@superadmin2.com",
 				password: bcrypt.hashSync('12345678', 10),
 				role: "super_admin",

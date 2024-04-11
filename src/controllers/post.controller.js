@@ -147,8 +147,7 @@ export const GetUsersPosts = async (req, res) => {
         const findUsersPosts = await Post
             .find()
             .populate({
-                path:"userId",
-                select:"email"})
+                path:"userId"})
 
 
         res.status(202).json({
