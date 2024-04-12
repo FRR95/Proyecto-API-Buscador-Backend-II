@@ -5,13 +5,14 @@ import { handleError } from "../utils/handleError.js";
 export const GetUsers = async (req, res) => {
     try {
         const { email } = req.query
+        const regex= new RegExp(email,"i")
 
         if (email) {
 
             const usersfiltered = await User
                 .find({
 
-                    email: Like("%"+email+"%")
+                    email:regex
 
                 })
                 .select('-password')
