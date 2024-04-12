@@ -110,6 +110,15 @@ export const DeleteUser = async (req, res) => {
     try {
         const UserId = req.params.id
 
+        const findUser = await User
+        .findById({
+            _id:UserId
+        })
+
+        if(findUser.role==="admin"){
+            throw new Error('You cannot kill god')
+        }
+
         const userDeleted = await User
             .findByIdAndDelete({
                 _id: UserId
@@ -125,6 +134,9 @@ export const DeleteUser = async (req, res) => {
         })
     } catch (error) {
         if (error.message === 'User not found') {
+            return handleError(res, error.message, 400)
+        }
+        if (error.message === 'You cannot kill god') {
             return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
