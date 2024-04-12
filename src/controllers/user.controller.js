@@ -11,7 +11,7 @@ export const GetUsers = async (req, res) => {
             const usersfiltered = await User
                 .find({
 
-                    email: email
+                    email: Like("%"+email+"%")
 
                 })
                 .select('-password')
