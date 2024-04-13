@@ -7,7 +7,7 @@ import { GetPostsByUserId } from "../controllers/post.controller.js";
 
 const router=Router();
 
-router.get('/',auth,isSuperAdmin,GetUsers)
+router.get('/',auth,GetUsers)
 router.get('/profile',auth,getUserProfile)
 router.put('/profile',auth,UpdateUserProfile)
 router.delete('/:id',auth,isSuperAdmin,DeleteUser)

@@ -185,6 +185,7 @@ export const GetPostById = async (req, res) => {
         handleError(res, "ERROR", 500)
     }
 }
+
 export const GetPostsByUserId = async (req, res) => {
     try {
         const userId = req.params.id
