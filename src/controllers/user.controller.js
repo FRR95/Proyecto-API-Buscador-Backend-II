@@ -117,7 +117,7 @@ export const DeleteUser = async (req, res) => {
         })
 
         if(findUser.role==="admin"){
-            throw new Error('You cannot kill god')
+            throw new Error('No puedes eliminar al admin')
         }
 
         const userDeleted = await User
@@ -137,7 +137,7 @@ export const DeleteUser = async (req, res) => {
         if (error.message === 'User not found') {
             return handleError(res, error.message, 400)
         }
-        if (error.message === 'You cannot kill god') {
+        if (error.message === 'No puedes eliminar al admin') {
             return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
