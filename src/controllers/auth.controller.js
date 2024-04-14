@@ -9,6 +9,15 @@ export const register = async (req, res) => {
 
 
         const { email, password, name } = req.body
+        const findUser = await User.find({
+            where: {
+                email: email
+            }
+        })
+        if (findUser) {
+            throw new Error('Lo sentimos,el email ya existe')
+        }
+
         if (password.length < 8 || password.length > 20) {
             throw new Error('Password must contain between 6 and 10 characters')
         }
@@ -34,11 +43,14 @@ export const register = async (req, res) => {
 
     }
     catch (error) {
+        if (error.message === 'Lo sentimos,el email ya existe') {
+            return handleError(res, error.message, 400)
+        }
         if (error.message === 'Password must contain between 6 and 10 characters') {
-        return handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === 'format email invalid') {
-        return handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
@@ -80,8 +92,8 @@ export const login = async (req, res) => {
             {
                 userId: user._id,
                 roleName: user.role,
-                username:user.name,
-                email:user.email,
+                username: user.name,
+                email: user.email,
             },
             process.env.JWT_SECRET,
             {
@@ -103,16 +115,16 @@ export const login = async (req, res) => {
 
     } catch (error) {
         if (error.message === 'email and password are mandatories') {
-           return handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === 'Email format is not valid') {
-           return handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === 'Email not found') {
-           return handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         if (error.message === 'Password invalid') {
-           return handleError(res, error.message, 400)
+            return handleError(res, error.message, 400)
         }
         handleError(res, "ERROR", 500)
     }
