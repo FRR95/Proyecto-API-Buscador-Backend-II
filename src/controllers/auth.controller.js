@@ -97,7 +97,7 @@ export const login = async (req, res) => {
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: "2h"
+                expiresIn: "5h"
             }
         )
         const userLogged = await User.findOne({
